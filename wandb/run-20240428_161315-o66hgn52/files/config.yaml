@@ -1,0 +1,85 @@
+wandb_version: 1
+
+model:
+  desc: null
+  value: yolov8n.pt
+use_pretrained_weights:
+  desc: null
+  value: true
+training:
+  desc: null
+  value:
+    batch_size: 4
+    lr: 0.001
+    momentum: 0.9
+    weight_decay: 0.01
+    max_epochs: 10
+    early_stopping_patience: 10
+    optimizer:
+      type: Adam
+      lr: 0.001
+      weight_decay: 0.01
+    scheduler:
+      type: CosineAnnealingLR
+      T_max: 10
+data:
+  desc: null
+  value:
+    images_path: /NAPLab-LiDAR/images
+    labels_path: /NAPLab-LiDAR/labels
+    num_classes: 8
+    train_split_ratio: 0.8
+    class_names:
+    - class1
+    - class2
+    - class3
+    - class4
+    - class5
+    - class6
+    - class7
+    - class8
+wandb:
+  desc: null
+  value:
+    project: my_project
+    experiment: my_experiment
+checkpoint_folder:
+  desc: null
+  value: /checkpoints
+_wandb:
+  desc: null
+  value:
+    python_version: 3.11.8
+    cli_version: 0.16.6
+    framework: lightning
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1714313595.0
+    t:
+      1:
+      - 1
+      - 9
+      - 41
+      - 55
+      - 103
+      2:
+      - 1
+      - 9
+      - 41
+      - 55
+      - 103
+      3:
+      - 7
+      - 13
+      - 16
+      - 23
+      4: 3.11.8
+      5: 0.16.6
+      8:
+      - 4
+      - 5
+      13: darwin-arm64
+    m:
+    - 1: trainer/global_step
+      6:
+      - 3

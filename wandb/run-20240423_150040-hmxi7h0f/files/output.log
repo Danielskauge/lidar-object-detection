@@ -1,0 +1,30 @@
+
+[34m[1mwandb[39m[22m: Network error resolved after 0:00:03.696259, resuming normal operation.
+[34m[1mwandb[39m[22m: 429 encountered ({"error":"rate limit exceeded"}), retrying request
+[34m[1mwandb[39m[22m: 429 encountered ({"error":"rate limit exceeded"}), retrying request
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/PIL/ImageFile.py", line 515, in _save
+    fh = fp.fileno()
+         ^^^^^^^^^
+AttributeError: '_idat' object has no attribute 'fileno'
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/Users/danielskauge/Documents/datasyn/lidar-object-detection/data_visualization.py", line 61, in <module>
+    log_annotated_images(image_directory, label_directory, class_names)
+  File "/Users/danielskauge/Documents/datasyn/lidar-object-detection/data_visualization.py", line 50, in log_annotated_images
+    wandb.log({"annotated_images": [wandb.Image(img, boxes={
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/wandb/sdk/data_types/image.py", line 179, in __init__
+    self._initialize_from_data(data_or_path, mode, file_type)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/wandb/sdk/data_types/image.py", line 336, in _initialize_from_data
+    self._image.save(tmp_path, transparency=None)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/PIL/Image.py", line 2432, in save
+    save_handler(self, fp, filename)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/PIL/PngImagePlugin.py", line 1407, in _save
+    ImageFile._save(im, _idat(fp, chunk), [("zip", (0, 0) + im.size, 0, rawmode)])
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/PIL/ImageFile.py", line 519, in _save
+    _encode_tile(im, fp, tile, bufsize, None, exc)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/PIL/ImageFile.py", line 538, in _encode_tile
+    errcode, data = encoder.encode(bufsize)[1:]
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

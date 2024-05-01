@@ -1,0 +1,36 @@
+  | Name  | Type   | Params
+---------------------------------
+0 | layer | Linear | 22
+---------------------------------
+22        Trainable params
+0         Non-trainable params
+22        Total params
+0.000     Total estimated model params size (MB)
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py", line 402, in _check_dataloader_iterable
+    iter(dataloader)  # type: ignore[call-overload]
+    ^^^^^^^^^^^^^^^^
+TypeError: 'LidarDataModule' object is not iterable
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/Users/danielskauge/Documents/datasyn/lidar-object-detection/main.py", line 67, in <module>
+    trainer.fit(model, data_module)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/trainer/trainer.py", line 544, in fit
+    call._call_and_handle_interrupt(
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/trainer/trainer.py", line 580, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/trainer/trainer.py", line 987, in _run
+    results = self._run_stage()
+              ^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/trainer/trainer.py", line 1033, in _run_stage
+    self.fit_loop.run()
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/loops/fit_loop.py", line 197, in run
+    self.setup_data()
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/loops/fit_loop.py", line 240, in setup_data
+    _check_dataloader_iterable(dl, source, trainer_fn)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py", line 407, in _check_dataloader_iterable
+    raise TypeError(
+TypeError: An invalid dataloader was passed to `Trainer.fit(train_dataloaders=...)`. Found <datamodule.LidarDataModule object at 0x1509f8ed0>.

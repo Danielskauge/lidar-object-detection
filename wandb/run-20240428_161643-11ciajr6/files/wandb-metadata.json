@@ -1,0 +1,49 @@
+{
+    "os": "macOS-14.2.1-arm64-arm-64bit",
+    "python": "3.11.8",
+    "heartbeatAt": "2024-04-28T14:16:44.600971",
+    "startedAt": "2024-04-28T14:16:43.728187",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/Users/danielskauge/Documents/datasyn/lidar-object-detection/main.py",
+    "codePathLocal": "main.py",
+    "codePath": "main.py",
+    "git": {
+        "remote": "https://github.com/Danielskauge/lidar-object-detection.git",
+        "commit": "ef8c97dce2c662d3aa8fa3946e4741e684858f62"
+    },
+    "email": "2001leinad@gmail.com",
+    "root": "/Users/danielskauge/Documents/datasyn/lidar-object-detection",
+    "host": "daniels-laptop.lan",
+    "username": "danielskauge",
+    "executable": "/opt/homebrew/Caskroom/miniconda/base/bin/python",
+    "cpu_count": 8,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 3504,
+        "min": 600,
+        "max": 3504
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3504,
+            "min": 600,
+            "max": 3504
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 228.27386474609375,
+            "used": 120.12334442138672
+        }
+    },
+    "gpuapple": {
+        "type": "arm",
+        "vendor": "Apple"
+    },
+    "memory": {
+        "total": 8.0
+    }
+}

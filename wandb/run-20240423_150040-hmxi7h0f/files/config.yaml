@@ -1,0 +1,36 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    bounding_box/class_labels:
+      annotated_images_wandb_delimeter_predictions:
+        type: bounding_box/class_labels
+        key: annotated_images_wandb_delimeter_predictions
+        value:
+          '0': car
+          '1': truck
+          '2': bus
+          '3': motorcycle
+          '4': bicycle
+          '5': scooter
+          '6': person
+          '7': rider
+    python_version: 3.11.8
+    cli_version: 0.16.6
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1713877240.0
+    t:
+      1:
+      - 55
+      2:
+      - 55
+      3:
+      - 23
+      4: 3.11.8
+      5: 0.16.6
+      8:
+      - 4
+      - 5
+      13: darwin-arm64

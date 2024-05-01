@@ -1,0 +1,27 @@
+
+model: yolov8n.pt
+use_pretrained_weights: true
+  
+training:
+  batch_size: 4
+  lr: 0.001
+  momentum: 0.9
+  weight_decay: 0.01
+  max_epochs: 10
+  early_stopping_patience: 10
+
+  optimizer:
+    type: Adam
+    lr: 0.001
+    weight_decay: 0.01
+
+  scheduler:
+    type: CosineAnnealingLR
+    T_max: 10
+
+wandb:
+  project: my_project
+  experiment: my_experiment
+
+checkpoint_folder: /checkpoints
+

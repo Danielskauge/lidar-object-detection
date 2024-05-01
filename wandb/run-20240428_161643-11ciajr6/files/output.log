@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/Users/danielskauge/Documents/datasyn/lidar-object-detection/main.py", line 46, in <module>
+    trainer.fit(model, datamodule=data_module)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/trainer/trainer.py", line 544, in fit
+    call._call_and_handle_interrupt(
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/trainer/trainer.py", line 580, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/trainer/trainer.py", line 949, in _run
+    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/trainer/call.py", line 92, in _call_setup_hook
+    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.11/site-packages/pytorch_lightning/trainer/call.py", line 179, in _call_lightning_datamodule_hook
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/danielskauge/Documents/datasyn/lidar-object-detection/datamodule.py", line 21, in setup
+    train_dataset = LidarDataset(image_dir=self.image_dir, label_dir=self.label_dir, transforms=self.get_transforms("train"))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/danielskauge/Documents/datasyn/lidar-object-detection/dataset.py", line 17, in __init__
+    self.images = [os.path.join(image_dir, img) for img in os.listdir(image_dir)]
+                                                           ^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/NAPLab-LiDAR/images'
