@@ -1,49 +1,49 @@
-from datamodule import LidarDataModule
-from models import YOLOv8Module, ResNet50
-import pytorch_lightning as pl
-from pathlib import Path
-import munch
-import yaml
-import torch
-from torch import nn, optim
+
+from ultralytics import YOLO
+
+#project
+project = "YOLOv8"
+name = "baseline-1"
+
+#training params
+imgsz = 640
+batch = 16
+epochs = 100
+freeze = 10
+fraction = 1
+patience = 10
+optimizer = "Adam"
 
 
+#augmentations
+hsv_h = 0
+hsv_s = 0
+hsv_v = 0
+translate = 0
+scale = 0
+mosaic = 0
+erasing = 0
+crop_fraction = 0
 
-if __name__ == "__main__":
+data_config = "configs/balanced.yaml"
 
-    #pl.seed_everything(42)
-    torch.set_float32_matmul_precision('medium')
-    config = munch.munchify(yaml.load(open("configs/default.yaml"), Loader=yaml.FullLoader))
+model = YOLO("yolov8n.pt")
 
-    data_module = LidarDataModule(
-        image_dir=config.data.images_path, 
-        label_dir=config.data.labels_path, 
-        batch_size=config.training.batch_size,
-        train_split_ratio=config.data.train_split_ratio)
-
-    model = YOLOv8Module(config=config)
-
-    print("Model type:", type(model))
-    print("Is instance of nn.Module:", isinstance(model, nn.Module))
-    print("Is instance of pl.LightningModule:", isinstance(model, pl.LightningModule))
-
-    trainer = pl.Trainer(
-        max_epochs=config.training.max_epochs, 
-        enable_progress_bar=True,
-        precision="bf16-mixed",
-        logger=pl.loggers.WandbLogger(project=config.wandb.project, name=config.wandb.experiment, config=config),
-        callbacks=[
-            pl.callbacks.EarlyStopping(monitor="val/acc", patience=config.training.early_stopping_patience, mode="max", verbose=True),
-            pl.callbacks.LearningRateMonitor(logging_interval="step"),
-            pl.callbacks.ModelCheckpoint(dirpath=Path(config.checkpoint_folder, config.wandb.project, config.wandb.experiment), 
-                            filename='best_model:epoch={epoch:02d}-val_acc={val/acc:.4f}',
-                            auto_insert_metric_name=False,
-                            save_weights_only=True,
-                            save_top_k=1),
-        ])
-
-    trainer.fit(model, train_dataloaders=data_module.train_dataloader(),
-                    val_dataloaders=data_module.val_dataloader())
-
-    #trainer.test(model, data_module)
-
+model.train(data=data_config, 
+            patience=patience,
+            epochs=epochs, 
+            imgsz=imgsz, 
+            batch=batch,
+            project=project,
+            name=name,
+            freeze=freeze,
+            hsv_h=hsv_h,
+            hsv_s=hsv_s,
+            hsv_v=hsv_v,
+            translate=translate,
+            scale=scale,
+            mosaic=mosaic,
+            erasing=erasing,
+            crop_fraction=crop_fraction,
+            fraction = fraction
+            )

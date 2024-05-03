@@ -54,7 +54,6 @@ def log_annotated_images(image_directory, label_directory, class_names):
                     }
                 })]})
 
-# Example usage
 class_names = {0: 'car', 1: 'truck', 2: 'bus', 3: 'motorcycle', 4: 'bicycle', 5: 'scooter', 6: 'person', 7: 'rider'}
 image_directory = 'NAPLab-LiDAR/images'
 label_directory = 'NAPLab-LiDAR/labels_yolo_v1.1'

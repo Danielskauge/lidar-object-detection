@@ -21,7 +21,7 @@ def load_data(img_dir: str, label_dir: str) -> pd.DataFrame:
     
     for label_file in os.listdir(label_dir):
         if label_file.endswith(".txt"):
-            img_file = label_file.replace(".txt",".PNG")
+            img_file = label_file.replace(".txt",".png")
             img_path = os.path.join(img_dir, img_file)
             if os.path.exists(img_path):
                 img = cv2.imread(img_path)
@@ -44,6 +44,17 @@ def load_data(img_dir: str, label_dir: str) -> pd.DataFrame:
                         })
     return pd.DataFrame(data)
 
+def instances_per_class(df: pd.DataFrame) -> pd.DataFrame:
+    """Count the number of instances per class in the DataFrame.
+
+    Args:
+        df (pd.DataFrame): The DataFrame with class information.
+
+    Returns:
+        pd.DataFrame: A DataFrame with the class IDs as the index and the number of instances as the 'count' column.
+    """
+    return df['class_id'].value_counts().sort_index()
+
 def plot_class_distribution(df: pd.DataFrame, class_names: dict):
     """Plot the distribution of classes as a bar chart.
 
@@ -59,7 +70,7 @@ def plot_class_distribution(df: pd.DataFrame, class_names: dict):
     plt.xlabel('Class ID')
     plt.ylabel('Frequency')
     plt.xticks(ticks=np.arange(len(class_names_sorted)), labels=class_names_sorted, rotation=0)  # Adjust rotation if needed
-    plt.savefig('plots/class_distribution.png')
+    plt.savefig('plots/class_distribution_shuffled.png')
 
 def display_random_samples(df: pd.DataFrame, directory: str, class_names: dict, num_samples: int = 3):
     """Display random samples of images for each class, showing bounding boxes, with class names as column headers.
@@ -99,11 +110,10 @@ def display_random_samples(df: pd.DataFrame, directory: str, class_names: dict, 
 if __name__ == "__main__":
 
     class_names = {0: 'car', 1: 'truck', 2: 'bus', 3: 'motorcycle', 4: 'bicycle', 5: 'scooter', 6: 'person', 7: 'rider'}
-    image_directory = 'NAPLab-LiDAR/images'
-    label_directory = 'NAPLab-LiDAR/labels_yolo_v1.1'
+    image_directory = 'CustomDataset/train/images'
+    label_directory = 'CustomDataset/train/labels'
     data_df = load_data(image_directory, label_directory)
     plot_class_distribution(data_df, class_names)
-    #display_random_samples(data_df, image_directory, class_names)
-
+    #print(instances_per_class(data_df))
 
         
