@@ -1,0 +1,17 @@
+
+#training params
+imgsz: 640
+batch: 16
+epochs: 30
+freeze: 10
+fraction: 1
+patience: 10
+optimizer: Adam
+
+name: more_augment
+
+#aug
+degrees: 20
+shear: 20
+hsv_s: 0.8
+hsv_v: 0.8

@@ -1,0 +1,10 @@
+
+#training params
+imgsz: 640
+batch: 16 #even higher
+epochs: 30
+freeze: 10
+patience: 10
+project: YOLOv8
+name: balanced_and_default_augmentations
+optimizer: Adam

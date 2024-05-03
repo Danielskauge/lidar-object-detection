@@ -1,0 +1,14 @@
+
+# Define dataset-specific information
+path: /home/danielrs/lidar-object-detection-1/NAPLab-LiDAR
+train: images/ # relative to 'path', train images dir
+val: val/images/  # relative to 'path', validation images dir
+
+# Number of classes
+nc: 8
+
+# Names of the classes
+names: ['car', 'truck', 'bus', 'motorcycle', 'bicycle', 'scooter', 'person', 'rider']
+
+#TODO check if thse are in correct order
+
